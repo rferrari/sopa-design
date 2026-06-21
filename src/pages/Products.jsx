@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { products, assets, brand } from '../config/assets';
 import { ArrowRight, Check } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
+import HeroVideo from '../components/HeroVideo';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -129,38 +130,17 @@ export default function Products() {
       style={{ paddingTop: '8rem' }}
     >
       {/* Hero Section with Video */}
-      <section style={{ padding: '2rem 2rem 6rem', position: 'relative' }}>
-        <div style={{ width: '100%', margin: '0 auto' }}>
-          {/* Video Banner */}
-          <div className="glass" style={{
-            borderRadius: '24px', overflow: 'hidden', aspectRatio: '21/9',
-            marginBottom: '4rem', position: 'relative',
-          }}>
-            <video
-              src={assets.videos.productScrub}
-              autoPlay muted loop playsInline
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to right, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.3) 60%, transparent)',
-              display: 'flex', alignItems: 'center', padding: '4rem',
-            }}>
-              <div style={{ maxWidth: '500px' }}>
-                <div className="badge">
-                  <span className="dot" /> {products.length} Agents Available
-                </div>
-                <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '1rem' }}>
-                  AI Agents for Every Function
-                </h1>
-                <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>
-                  Each agent specializes in a domain. Combine them into a custom AI workforce tailored to your business needs.
-                </p>
-              </div>
-            </div>
-          </div>
+      <HeroVideo
+        videoSrc={assets.videos.productScrub}
+        title="AI Agents for Every Function"
+        subtitle="Each agent specializes in a domain. Combine them into a custom AI workforce tailored to your business needs."
+        className="products-hero"
+        style={{ height: '60vh', minHeight: '400px', borderRadius: '24px', margin: '2rem', marginBottom: '4rem' }}
+      >
+        <div className="badge" style={{ margin: '0 auto 1.5rem' }}>
+          <span className="dot" /> {products.length} Agents Available
         </div>
-      </section>
+      </HeroVideo>
 
       {/* Horizontal Scroll Agents Section */}
       <section ref={wrapperRef} style={{ height: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>

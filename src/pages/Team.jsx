@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { teamMembers, brand, assets } from '../config/assets';
 import { ArrowRight, ChevronLeft, ChevronRight, User } from 'lucide-react';
+import HeroVideo from '../components/HeroVideo';
 
 /* ---- 3D Carousel Character Select ---- */
 function TeamCarousel() {
@@ -227,35 +228,15 @@ export default function Team() {
       style={{ paddingTop: '8rem' }}
     >
       {/* Hero Section with Video */}
-      <section style={{ padding: '2rem 2rem 4rem', position: 'relative' }}>
-        <div style={{ width: '100%', margin: '0 auto' }}>
-          <div className="glass" style={{
-            borderRadius: '24px', overflow: 'hidden', aspectRatio: '21/9',
-            marginBottom: '4rem', position: 'relative',
-          }}>
-            <video
-              src={assets.videos.heroReel}
-              autoPlay muted loop playsInline
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to right, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.3) 60%, transparent)',
-              display: 'flex', alignItems: 'center', padding: '4rem',
-            }}>
-              <div style={{ maxWidth: '500px' }}>
-                <div className="badge"><span className="dot" /> The Humans Behind the Agents</div>
-                <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '1rem' }}>
-                  Our Team
-                </h1>
-                <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>
-                  A blend of AI researchers, engineers, designers, and growth experts building the future of autonomous work.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroVideo
+        videoSrc={assets.videos.heroReel}
+        title="Our Team"
+        subtitle="A blend of AI researchers, engineers, designers, and growth experts building the future of autonomous work."
+        className="team-hero"
+        style={{ height: '60vh', minHeight: '400px', borderRadius: '24px', margin: '2rem', marginBottom: '4rem' }}
+      >
+        <div className="badge" style={{ margin: '0 auto 1.5rem' }}><span className="dot" /> The Humans Behind the Agents</div>
+      </HeroVideo>
 
       {/* 3D Character Select Carousel */}
       <section style={{

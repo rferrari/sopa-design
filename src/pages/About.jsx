@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { brand, assets } from '../config/assets';
 import { ArrowRight, Bot, Brain, Users } from 'lucide-react';
+import HeroVideo from '../components/HeroVideo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,35 +76,17 @@ export default function About() {
       />
 
       {/* Hero Section with Video */}
-      <section style={{ padding: '2rem 2rem 6rem', position: 'relative', zIndex: 1 }}>
-        <div style={{ width: '100%', margin: '0 auto' }}>
-          <div className="glass" style={{
-            borderRadius: '24px', overflow: 'hidden', aspectRatio: '21/9',
-            position: 'relative',
-          }}>
-            <video
-              src={assets.videos.backgroundLoop}
-              autoPlay muted loop playsInline
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to right, rgba(5,5,5,0.85) 0%, rgba(5,5,5,0.3) 60%, transparent)',
-              display: 'flex', alignItems: 'center', padding: '4rem',
-            }}>
-              <div style={{ maxWidth: '650px' }}>
-                <div className="badge"><span className="dot" /> Our Story</div>
-                <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', marginBottom: '1rem' }}>
-                  We're Building the <span style={{ background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Agency of the Future</span>
-                </h1>
-                <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', lineHeight: 1.7 }}>
-                  {brand.name} was born from a simple question: what if every business had access to a team of AI specialists that never stops working?
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroVideo
+        videoSrc={assets.videos.backgroundLoop}
+        title={
+          <>We're Building the <span style={{ background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Agency of the Future</span></>
+        }
+        subtitle={`${brand.name} was born from a simple question: what if every business had access to a team of AI specialists that never stops working?`}
+        className="about-hero"
+        style={{ height: '60vh', minHeight: '400px', borderRadius: '24px', margin: '2rem' }}
+      >
+        <div className="badge" style={{ margin: '0 auto 1.5rem' }}><span className="dot" /> Our Story</div>
+      </HeroVideo>
 
       {/* Shape Morph + Timeline Section */}
       <section className="about-morph-section" style={{
