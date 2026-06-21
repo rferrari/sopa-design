@@ -3,7 +3,8 @@ import { ReactLenis } from 'lenis/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
+import { Sun, Moon } from 'lucide-react';
 import { brand } from './config/assets';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -42,6 +43,19 @@ function LoadingScreen() {
 }
 
 function Navigation() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
   return (
     <nav className="nav-container">
       <div className="nav-logo">
@@ -54,6 +68,9 @@ function Navigation() {
         <Link to="/about">About</Link>
         <Link to="/team">Team</Link>
         <Link to="/contact">Contact</Link>
+        <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
       </div>
     </nav>
   );
