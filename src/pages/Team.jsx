@@ -27,8 +27,9 @@ function TeamCarousel() {
     const x = Math.sin(rad) * radius;
     const z = Math.cos(rad) * radius - radius; // push back
     const scale = Math.max(0.5, 1 + z / (radius * 2));
-    const opacity = Math.abs(diff) <= 2 ? 1 : 0.3;
+    const opacity = Math.abs(diff) <= 1 ? 1 : 0;
     const zIndex = Math.round(scale * 100);
+    const pointerEvents = opacity === 0 ? 'none' : 'auto';
 
     return {
       x,
@@ -37,6 +38,7 @@ function TeamCarousel() {
       opacity,
       zIndex,
       rotateY: -angle * 0.3,
+      pointerEvents,
     };
   };
 
@@ -57,14 +59,14 @@ function TeamCarousel() {
           onClick={prev}
           style={{
             position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)',
-            background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+            background: 'var(--accent-purple)', border: 'none',
             borderRadius: '50%', width: 52, height: 52,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', zIndex: 200, backdropFilter: 'blur(10px)',
             transition: 'all 0.2s',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(1.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.05)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
         >
           <ChevronLeft size={24} color="#fff" />
         </button>
@@ -72,14 +74,14 @@ function TeamCarousel() {
           onClick={next}
           style={{
             position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',
-            background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+            background: 'var(--accent-purple)', border: 'none',
             borderRadius: '50%', width: 52, height: 52,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', zIndex: 200, backdropFilter: 'blur(10px)',
             transition: 'all 0.2s',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(1.2)'; e.currentTarget.style.transform = 'translateY(-50%) scale(1.05)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'translateY(-50%) scale(1)'; }}
         >
           <ChevronRight size={24} color="#fff" />
         </button>
@@ -101,6 +103,7 @@ function TeamCarousel() {
                   scale: s.scale,
                   opacity: s.opacity,
                   rotateY: s.rotateY,
+                  pointerEvents: s.pointerEvents,
                 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 25 }}
                 style={{
