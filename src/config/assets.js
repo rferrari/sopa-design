@@ -4,7 +4,8 @@
 export const assets = {
   videos: {
     // Local video assets from src/assets/
-    heroReel: '/src/assets/137306-766326277_medium.mp4',
+    // heroReel: '/src/assets/137306-766326277_medium.mp4',
+    heroReel: '/src/assets/Abstract_animation_flowing.mp4',
     productScrub: '/src/assets/1006-142621176_medium.mp4',
     agentDemo: '/src/assets/137263-766326223_medium.mp4',
     backgroundLoop: '/src/assets/336149_medium.mp4',
